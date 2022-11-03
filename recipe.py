@@ -11,7 +11,8 @@ while True:
     print('3 search a recipe')
     print('4 update a recipe')
     print('5 delete a recipe')
-    print('6 exit')
+    print('6 total price')
+    print('7 Exit')
 
     choice = int(input('Enter an option: '))
     if(choice==1):
@@ -55,11 +56,16 @@ while True:
         mycursor.execute(sql)
         mydb.commit()
     elif(choice==5):
-        print('delete the student')
+        print('delete the recipe')
         name = input('enter the name of the recipe to be deleting : ')
         sql = "DELETE FROM `recipes` WHERE `Name`='"+name+"'"
         mycursor.execute(sql)
         mydb.commit()
     elif(choice==6):
+        print('total price')
+        sql = 'SELECT SUM(`Price`) FROM `recipes` '
+        mycursor.execute(sql)
+        result = mycursor.fetchall()
+        print(result)
 
         break
