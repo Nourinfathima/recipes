@@ -1,7 +1,7 @@
 from unicodedata import category
 import mysql.connector
 
-mydb = mysql.connector.connect(host = 'localhost' , user = 'root' , password = '' , database = 'recipe_db')
+mydb = mysql.connector.connect(host = 'localhost' , user = 'root' , password = '' , database = 'recipesdb')
 
 mycursor = mydb.cursor()
 while True:
@@ -18,17 +18,23 @@ while True:
         print('enter the recipe selected')
         
         name = input('enter the name of the recipe : ')
-        categorys = input('enter the category such as veg or non-veg : ')
         
         taste = input('enter the taste you need : ')
+        categorys = input('enter the category such as veg or non-veg : ')
         price = input('enter the price : ')
         
-        sql = 'INSERT INTO `food`(`Name`, `Category`, `Taste`, `Price`) VALUES (%s,%s,%s,%s)'
-        data = (name, categorys,taste,price)
+        sql = 'INSERT INTO `recipes`(`name`,`taste` ,`categorys`,`price`) VALUES (%s,%s,%s,%s)'
+               
+        data = (name,taste,categorys,price)
         mycursor.execute(sql , data)
         mydb.commit()
     elif(choice==2):
-        print('view student')
+        print('view recipe')
+        sql = 'SELECT * FROM `recipes`'
+        mycursor.execute(sql)
+        result = mycursor.fetchall()
+        for i in result:
+            print(i)
     elif(choice==3):
         print('search a student')
     elif(choice==4):
@@ -36,4 +42,5 @@ while True:
     elif(choice==5):
         print('delete the student')
     elif(choice==6):
+
         break
