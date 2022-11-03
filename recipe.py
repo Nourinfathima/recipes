@@ -36,7 +36,14 @@ while True:
         for i in result:
             print(i)
     elif(choice==3):
-        print('search a student')
+        print('search a food')
+        categorys = input('enter the category such as veg or non-veg : ')
+    
+        sql = "SELECT `Name`, `taste`, `categorys`, `Price` FROM `recipes` WHERE `Categorys`='"+categorys+"'"
+        mycursor.execute(sql)
+        result = mycursor.fetchall()
+        for i in result:
+            print(i)
     elif(choice==4):
         print('update the student')
     elif(choice==5):
