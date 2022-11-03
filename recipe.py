@@ -12,7 +12,9 @@ while True:
     print('4 update a recipe')
     print('5 delete a recipe')
     print('6 total price')
-    print('7 Exit')
+    print('7 price of each categorys')
+    print('8 Starting letter of name of recepi')
+    print('exit')
 
     choice = int(input('Enter an option: '))
     if(choice==1):
@@ -67,5 +69,17 @@ while True:
         mycursor.execute(sql)
         result = mycursor.fetchall()
         print(result)
+    elif(choice == 7):
+        print('total price for each categorys')
+        sql = "SELECT `Categorys`, SUM(`price`) FROM `recipes` GROUP BY `Categorys`"
+        mycursor.execute(sql)
+        result = mycursor.fetchall()
+        print(result)
+    elif(choice==8):
+        print('Starting letter of name of recepi')
+
+    elif(choice==9):
+        break
+        
 
         break
