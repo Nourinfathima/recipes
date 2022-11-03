@@ -1,4 +1,4 @@
-from unicodedata import category
+
 import mysql.connector
 
 mydb = mysql.connector.connect(host = 'localhost' , user = 'root' , password = '' , database = 'recipesdb')
@@ -45,7 +45,15 @@ while True:
         for i in result:
             print(i)
     elif(choice==4):
-        print('update the student')
+        print('update the food')
+        categorys = input('enter the category such as veg or non-veg : ')
+        name = input('enter the name of the recipe : ')
+        taste = input('enter the taste you need : ')
+        price = input('enter the price : ')
+
+        sql = f"UPDATE `recipes` SET `name`='{name}',`taste`='{taste}',`categorys`='{categorys}' WHERE `price`={price}"
+        mycursor.execute(sql)
+        mydb.commit()
     elif(choice==5):
         print('delete the student')
     elif(choice==6):
